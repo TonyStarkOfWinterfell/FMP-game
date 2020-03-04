@@ -30,10 +30,51 @@ public class GameManager : MonoBehaviour
 
     public bool GameOver { get { return gameOver; } }
 
-    private void Awake()
+    void Awake()
     {
        Instance = this;
     }
+
+    void OnEnable()
+    {
+        CountdownText.OnCountdownFinished += OnCountdownFinished;
+        PlayerTap.OnPlayerDied += OnPlayerDied;
+        PlayerTap.OnPlayerScored += OnPlayerScored;
+    }
+
+    void OnDisable()
+    {
+        CountdownText.OnCountdownFinished -= OnCountdownFinished;
+        PlayerTap.OnPlayerDied -= OnPlayerDied;
+        PlayerTap.OnPlayerScored -= OnPlayerScored;
+    }
+
+    void OnCountdownFinished()
+    {
+        SetPageState(PageState.None);
+        OnGameStarted();
+        score = 0;
+        gameOver = false;
+    }
+
+    void OnPlayerDied()
+    {
+        gameOver = true;
+        int savedScore = PlayerPrefs.GetInt("Highscore");
+        if (score > savedScore)
+        {
+            PlayerPrefs.SetInt("HighScore", score);
+        }
+        SetPageState(PageState.GameOver);
+    }
+
+    void OnPlayerScored()
+    {
+        score++;
+        scoreText.text = score.ToString();
+    }
+
+
 
     void SetPageState(PageState state)
     {
@@ -69,11 +110,15 @@ public class GameManager : MonoBehaviour
     public void ConfirmGameOver()
     {
         //activated when replay button is hit
+        OnGameOverConfirmed();
+        scoreText.text = "0";
+        SetPageState(PageState.Start);
     }
 
     public void StartGame()
     {
         //activated when play button is hit
+        SetPageState(PageState.Countdown);
     }
 
 }
