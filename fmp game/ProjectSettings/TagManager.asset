@@ -6,6 +6,7 @@ TagManager:
   tags:
   - DeadZone
   - ScoreZone
+  - TestLog
   layers:
   - Default
   - TransparentFX
@@ -42,4 +43,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Game
+    uniqueID: 4003070847
+    locked: 0
+  - name: UI
+    uniqueID: 201058807
     locked: 0

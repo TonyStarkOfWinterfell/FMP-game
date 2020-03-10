@@ -35,6 +35,18 @@ public class GameManager : MonoBehaviour
        Instance = this;
     }
 
+    void Update()
+    {
+        if (gameOver == false)
+        {
+            transform.position += new Vector3(5f * Time.deltaTime, 0, 0);
+        }
+    }
+
+
+
+
+
     void OnEnable()
     {
         CountdownText.OnCountdownFinished += OnCountdownFinished;
