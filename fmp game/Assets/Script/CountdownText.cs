@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 
 [RequireComponent(typeof(Text))]
@@ -12,11 +14,20 @@ public class CountdownText : MonoBehaviour
 
     Text countdown;
 
+    private ScoreCount theScoreManager2;
+
+
+    void Start()
+    {
+        theScoreManager2 = FindObjectOfType<ScoreCount>();
+    }
+
     void OnEnable()
     {
         countdown = GetComponent<Text>();
         countdown.text = "3";
         StartCoroutine("Countdown");
+        
     }
 
     IEnumerator Countdown()
@@ -28,5 +39,8 @@ public class CountdownText : MonoBehaviour
             yield return new WaitForSeconds(1);
         }
         OnCountdownFinished();
+        theScoreManager2.scoreIncreasing = true;
+        //SceneManager.LoadScene(Application.loadedLevelName);
+
     }
 }

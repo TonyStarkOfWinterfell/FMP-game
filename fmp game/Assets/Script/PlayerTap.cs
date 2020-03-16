@@ -21,8 +21,14 @@ public class PlayerTap : MonoBehaviour
 
     GameManager game;
 
+    private ScoreCount theScoreManager;
+
+
+    
+
     void Start()
     {
+        theScoreManager = FindObjectOfType<ScoreCount>();
         rigidbody = GetComponent<Rigidbody2D>();
         downRotation = Quaternion.Euler(0, 0, -90);
         forwardRotation = Quaternion.Euler(0, 0, 35);
@@ -91,6 +97,7 @@ public class PlayerTap : MonoBehaviour
             //register dead event
             OnPlayerDied();
             //play sound
+            theScoreManager.scoreIncreasing = false;
         }
     }
 

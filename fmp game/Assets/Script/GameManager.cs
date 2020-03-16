@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class GameManager : MonoBehaviour
 {
 
@@ -12,10 +13,14 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
+    public GameObject total;
+
     public GameObject startPage;
     public GameObject gameOverPage;
     public GameObject countdownPage;
     public Text scoreText;
+
+    
 
     enum PageState
     {
@@ -39,7 +44,7 @@ public class GameManager : MonoBehaviour
     {
         if (gameOver == false)
         {
-            transform.position += new Vector3(5f * Time.deltaTime, 0, 0);
+            transform.position += new Vector3(10f * Time.deltaTime, 0, 0);
         }
     }
 
@@ -125,12 +130,15 @@ public class GameManager : MonoBehaviour
         OnGameOverConfirmed();
         scoreText.text = "0";
         SetPageState(PageState.Start);
+        
     }
 
     public void StartGame()
     {
         //activated when play button is hit
+        
         SetPageState(PageState.Countdown);
+        
     }
 
 }

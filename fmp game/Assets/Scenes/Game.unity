@@ -306,6 +306,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &424126556
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 424126557}
+  m_Layer: 0
+  m_Name: Total
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &424126557
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424126556}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.7828026, y: 3.8168728, z: 62.245518}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 519420032}
+  - {fileID: 1339474589}
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &468493647
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,6 +484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54aae863dbeffa847a2c18296936d550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  total: {fileID: 0}
   startPage: {fileID: 1126524183}
   gameOverPage: {fileID: 807367696}
   countdownPage: {fileID: 1471118682}
@@ -506,15 +539,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -5}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.7828026, y: -3.8168728, z: -67.245514}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1552211386}
   - {fileID: 1858186551}
   - {fileID: 722203881}
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_Father: {fileID: 424126557}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &541299631
 GameObject:
@@ -785,12 +818,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1339474589}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.4774178, y: 0.7866667}
-  m_AnchorMax: {x: 0.521, y: 0.9516667}
-  m_AnchoredPosition: {x: 0.25, y: 0.75}
-  m_SizeDelta: {x: 0.59000015, y: 1.39996}
+  m_AnchorMin: {x: 0.020875001, y: 0.8883334}
+  m_AnchorMax: {x: 0.065000005, y: 0.9933334}
+  m_AnchoredPosition: {x: 285.5, y: 2.149994}
+  m_SizeDelta: {x: 584.08, y: 3.7000008}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &713877884
 MonoBehaviour:
@@ -911,7 +944,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 722203879}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.5, y: 1.3, z: 5.3758683}
+  m_LocalPosition: {x: -6.5, y: 1.3, z: 4.9}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 519420032}
@@ -952,7 +985,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tapForce: 350
   tiltSmooth: 1.5
-  startPos: {x: -6.5, y: 1.3, z: 5.375868}
+  startPos: {x: -6.5, y: 1.3, z: 4.9}
 --- !u!58 &722203884
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1131,7 +1164,7 @@ RectTransform:
   - {fileID: 723513518}
   - {fileID: 1011572965}
   m_Father: {fileID: 1339474589}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.9925, y: 1}
@@ -1200,7 +1233,7 @@ Transform:
   - {fileID: 708127087}
   - {fileID: 468493650}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1011572964
 GameObject:
@@ -1484,7 +1517,7 @@ RectTransform:
   - {fileID: 541299632}
   - {fileID: 131224046}
   m_Father: {fileID: 1339474589}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1581,12 +1614,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 1517174301}
   - {fileID: 713877883}
   - {fileID: 1126524184}
   - {fileID: 807367697}
   - {fileID: 1471118683}
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_Father: {fileID: 424126557}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1622,13 +1656,67 @@ RectTransform:
   m_Children:
   - {fileID: 1836088005}
   m_Father: {fileID: 1339474589}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -1, y: 0}
   m_SizeDelta: {x: -1, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1517174300
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1517174301}
+  - component: {fileID: 1517174302}
+  m_Layer: 5
+  m_Name: ScoreManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1517174301
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517174300}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1339474589}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1517174302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517174300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 609be7382bd4ba749bc39723a028bdcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 713877884}
+  highScoreText: {fileID: 131224047}
+  scoreCount: 0
+  highScoreCount: 0
+  pointsPerSecond: 0.75
+  scoreIncreasing: 1
 --- !u!1 &1552211385
 GameObject:
   m_ObjectHideFlags: 0
