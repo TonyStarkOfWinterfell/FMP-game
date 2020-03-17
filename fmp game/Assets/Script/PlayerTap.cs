@@ -22,13 +22,18 @@ public class PlayerTap : MonoBehaviour
     GameManager game;
 
     private ScoreCount theScoreManager;
+    private MapGen spawning;
 
 
     
 
+
+
+
     void Start()
     {
         theScoreManager = FindObjectOfType<ScoreCount>();
+        spawning = FindObjectOfType<MapGen>();
         rigidbody = GetComponent<Rigidbody2D>();
         downRotation = Quaternion.Euler(0, 0, -90);
         forwardRotation = Quaternion.Euler(0, 0, 35);
@@ -94,10 +99,12 @@ public class PlayerTap : MonoBehaviour
         if (col.gameObject.tag == "DeadZone")
         {
             rigidbody.simulated = false;
-            //register dead event
+            
             OnPlayerDied();
-            //play sound
+
+            spawning.isSpawning = false;
             theScoreManager.scoreIncreasing = false;
+
         }
     }
 

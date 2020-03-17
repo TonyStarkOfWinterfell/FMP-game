@@ -15,11 +15,13 @@ public class CountdownText : MonoBehaviour
     Text countdown;
 
     private ScoreCount theScoreManager2;
+    private MapGen spawning2;
 
 
     void Start()
     {
         theScoreManager2 = FindObjectOfType<ScoreCount>();
+        spawning2 = FindObjectOfType<MapGen>();
     }
 
     void OnEnable()
@@ -31,7 +33,7 @@ public class CountdownText : MonoBehaviour
     }
 
     IEnumerator Countdown()
-    {
+    {        
         int count = 3;
         for (int i = 0; i < count; i++)
         {
@@ -40,6 +42,8 @@ public class CountdownText : MonoBehaviour
         }
         OnCountdownFinished();
         theScoreManager2.scoreIncreasing = true;
+        spawning2.isSpawning = true;
+
         //SceneManager.LoadScene(Application.loadedLevelName);
 
     }

@@ -20,7 +20,16 @@ public class GameManager : MonoBehaviour
     public GameObject countdownPage;
     public Text scoreText;
 
-    
+
+    private ScoreCount theScoreManager3;
+
+
+    void Start()
+    {
+        theScoreManager3 = FindObjectOfType<ScoreCount>();
+    }
+
+
 
     enum PageState
     {
@@ -33,7 +42,11 @@ public class GameManager : MonoBehaviour
     int score = 0;
     bool gameOver = false;
 
+
     public bool GameOver { get { return gameOver; } }
+
+
+
 
     void Awake()
     {
@@ -76,6 +89,9 @@ public class GameManager : MonoBehaviour
 
     void OnPlayerDied()
     {
+        total.transform.position = new Vector3((total.transform.position.x + 50), total.transform.position.y, total.transform.position.z);
+        theScoreManager3.scoreCount = 0;
+
         gameOver = true;
         int savedScore = PlayerPrefs.GetInt("Highscore");
         if (score > savedScore)
@@ -83,6 +99,8 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", score);
         }
         SetPageState(PageState.GameOver);
+
+       
     }
 
     void OnPlayerScored()
@@ -129,16 +147,14 @@ public class GameManager : MonoBehaviour
         //activated when replay button is hit
         OnGameOverConfirmed();
         scoreText.text = "0";
-        SetPageState(PageState.Start);
-        
+        SetPageState(PageState.Start);        
     }
 
     public void StartGame()
     {
         //activated when play button is hit
         
-        SetPageState(PageState.Countdown);
-        
+        SetPageState(PageState.Countdown);        
     }
 
 }

@@ -28,6 +28,7 @@ public class MapGen : MonoBehaviour
     public float minObsScaleY;
     public float maxObsScaleY;
 
+    public bool isSpawning;
 
     void Start()
     {
@@ -44,6 +45,8 @@ public class MapGen : MonoBehaviour
         return obs;
     }
 
+
+
     void SetTransform(GameObject obs, float referenceX)
     {
         obs.transform.position = new Vector3(referenceX + Random.Range(minObsSpacing, maxObsSpacing), Random.Range(minObsY, maxObsY), 0);
@@ -51,6 +54,9 @@ public class MapGen : MonoBehaviour
         //stretch on y
         obs.transform.localScale = new Vector3(obs.transform.localScale.x, Random.Range(minObsScaleY, maxObsY), obs.transform.localScale.z);
     }
+
+
+
 
 
     // Update is called once per frame
@@ -70,15 +76,23 @@ public class MapGen : MonoBehaviour
             floor = tempFloor;
         }
 
-        if (player.transform.position.x > obs2.transform.position.x)
-        {
-            var tempObs = obs1;
-            obs1 = obs2;
-            obs2 = obs3;
-            obs3 = obs4;
 
-            SetTransform(tempObs, obs3.transform.position.x);
-            obs4 = tempObs;
+        if (isSpawning == true)
+        {
+            if (player.transform.position.x > obs2.transform.position.x)
+            {
+                var tempObs = obs1;
+                obs1 = obs2;
+                obs2 = obs3;
+                obs3 = obs4;
+
+                SetTransform(tempObs, obs3.transform.position.x);
+                obs4 = tempObs;
+            }
         }
+
+
+
+       
     }
 }
