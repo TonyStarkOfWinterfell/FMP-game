@@ -23,10 +23,13 @@ public class GameManager : MonoBehaviour
 
     private ScoreCount theScoreManager3;
 
+    private MapGen spawning2;
+
 
     void Start()
     {
         theScoreManager3 = FindObjectOfType<ScoreCount>();
+        spawning2 = FindObjectOfType<MapGen>();
     }
 
 
@@ -147,7 +150,27 @@ public class GameManager : MonoBehaviour
         //activated when replay button is hit
         OnGameOverConfirmed();
         scoreText.text = "0";
-        SetPageState(PageState.Start);        
+        SetPageState(PageState.Start);
+
+        spawning2.obs1 = GenerateObs(spawning2.player.transform.position.x + 10);
+        spawning2.obs2 = GenerateObs(spawning2.obs1.transform.position.x);
+        spawning2.obs3 = GenerateObs(spawning2.obs2.transform.position.x);
+        spawning2.obs4 = GenerateObs(spawning2.obs3.transform.position.x);
+    }
+
+    GameObject GenerateObs(float referenceX)
+    {
+        GameObject obs = GameObject.Instantiate(spawning2.obsPrefab);
+        SetTransform(obs, referenceX);
+        return obs;
+    }
+
+    void SetTransform(GameObject obs, float referenceX)
+    {
+        obs.transform.position = new Vector3(referenceX + Random.Range(spawning2.minObsSpacing, spawning2.maxObsSpacing), Random.Range(spawning2.minObsY, spawning2.maxObsY), 0);
+
+        //stretch on y
+        obs.transform.localScale = new Vector3(obs.transform.localScale.x, Random.Range(spawning2.minObsScaleY, spawning2.maxObsY), obs.transform.localScale.z);
     }
 
     public void StartGame()
