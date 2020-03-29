@@ -19,6 +19,10 @@ public class PlayerTap : MonoBehaviour
     Quaternion downRotation;
     Quaternion forwardRotation;
 
+    public AudioSource tapAudio;
+    public AudioSource scoreAudio;
+    public AudioSource dieAudio;
+
     GameManager game;
 
     private ScoreCount theScoreManager;
@@ -79,6 +83,7 @@ public class PlayerTap : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            tapAudio.Play();
             transform.rotation = forwardRotation;
             rigidbody.velocity = Vector3.zero;
             rigidbody.AddForce(Vector2.up * tapForce, ForceMode2D.Force);
@@ -94,11 +99,14 @@ public class PlayerTap : MonoBehaviour
             //register score
             OnPlayerScored();
             //play 
+            scoreAudio.Play();
         }
 
         if (col.gameObject.tag == "DeadZone")
         {
             rigidbody.simulated = false;
+
+            dieAudio.Play();
             
             OnPlayerDied();
 
