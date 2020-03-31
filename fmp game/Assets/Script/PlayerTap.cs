@@ -70,8 +70,7 @@ public class PlayerTap : MonoBehaviour
 
     void OnGameOverConfirmed()
     {
-        transform.localPosition = startPos;
-        transform.rotation = Quaternion.identity;
+        
     } 
 
 
@@ -113,8 +112,31 @@ public class PlayerTap : MonoBehaviour
             spawning.isSpawning = false;
             theScoreManager.scoreIncreasing = false;
 
+            transform.localPosition = startPos;
+            transform.rotation = Quaternion.identity;
+
+            spawning.obs1 = GenerateObs(spawning.player.transform.position.x + 10);
+            spawning.obs2 = GenerateObs(spawning.obs1.transform.position.x);
+            spawning.obs3 = GenerateObs(spawning.obs2.transform.position.x);
+            spawning.obs4 = GenerateObs(spawning.obs3.transform.position.x);
+        }
+
+        GameObject GenerateObs(float referenceX)
+        {
+            GameObject obs = GameObject.Instantiate(spawning.obsPrefab);
+            SetTransform(obs, referenceX);
+            return obs;
+        }
+
+        void SetTransform(GameObject obs, float referenceX)
+        {
+            obs.transform.position = new Vector3(referenceX + Random.Range(spawning.minObsSpacing, spawning.maxObsSpacing), Random.Range(spawning.minObsY, spawning.maxObsY), 0);
+
+            //stretch on y
+            obs.transform.localScale = new Vector3(obs.transform.localScale.x, Random.Range(spawning.minObsScaleY, spawning.maxObsY), obs.transform.localScale.z);
         }
     }
+    
 
 
 }

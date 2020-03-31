@@ -20,16 +20,23 @@ public class GameManager : MonoBehaviour
     public GameObject countdownPage;
     public Text scoreText;
 
+    public GameObject character;
+    public Sprite fish, jellyFish, turtle, penguin;
+    private SpriteRenderer mySprite;
+    private int choose2 = 1;
+
 
     private ScoreCount theScoreManager3;
+    private CharacterSwap CharSwap;
 
-    private MapGen spawning2;
+
+
 
 
     void Start()
     {
         theScoreManager3 = FindObjectOfType<ScoreCount>();
-        spawning2 = FindObjectOfType<MapGen>();
+        CharSwap = FindObjectOfType<CharacterSwap>();
     }
 
 
@@ -44,8 +51,7 @@ public class GameManager : MonoBehaviour
 
     int score = 0;
     bool gameOver = false;
-
-
+    
     public bool GameOver { get { return gameOver; } }
 
 
@@ -54,7 +60,11 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
        Instance = this;
+        mySprite = character.GetComponent<SpriteRenderer>();
+        CharSwap = FindObjectOfType<CharacterSwap>();
     }
+
+
 
     void Update()
     {
@@ -82,6 +92,8 @@ public class GameManager : MonoBehaviour
         PlayerTap.OnPlayerScored -= OnPlayerScored;
     }
 
+
+
     void OnCountdownFinished()
     {
         SetPageState(PageState.None);
@@ -89,6 +101,7 @@ public class GameManager : MonoBehaviour
         score = 0;
         gameOver = false;
     }
+
 
     void OnPlayerDied()
     {
@@ -101,10 +114,9 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("HighScore", score);
         }
-        SetPageState(PageState.GameOver);
-
-       
+        SetPageState(PageState.GameOver);       
     }
+
 
     void OnPlayerScored()
     {
@@ -152,31 +164,34 @@ public class GameManager : MonoBehaviour
         scoreText.text = "0";
         SetPageState(PageState.Start);
 
-        spawning2.obs1 = GenerateObs(spawning2.player.transform.position.x + 10);
-        spawning2.obs2 = GenerateObs(spawning2.obs1.transform.position.x);
-        spawning2.obs3 = GenerateObs(spawning2.obs2.transform.position.x);
-        spawning2.obs4 = GenerateObs(spawning2.obs3.transform.position.x);
-    }
+        choose2 = CharSwap.SelectInt;
 
-    GameObject GenerateObs(float referenceX)
-    {
-        GameObject obs = GameObject.Instantiate(spawning2.obsPrefab);
-        SetTransform(obs, referenceX);
-        return obs;
-    }
+        switch (choose2)
+        {
+            case 1:
+                mySprite.sprite = fish;
+                break;
+            case 2:
+                mySprite.sprite = jellyFish;
+                break;
+            case 3:
+                mySprite.sprite = turtle;
+                break;
+            case 4:
+                mySprite.sprite = penguin;
+                break;
+            default:
+                mySprite.sprite = fish;
+                break;
 
-    void SetTransform(GameObject obs, float referenceX)
-    {
-        obs.transform.position = new Vector3(referenceX + Random.Range(spawning2.minObsSpacing, spawning2.maxObsSpacing), Random.Range(spawning2.minObsY, spawning2.maxObsY), 0);
-
-        //stretch on y
-        obs.transform.localScale = new Vector3(obs.transform.localScale.x, Random.Range(spawning2.minObsScaleY, spawning2.maxObsY), obs.transform.localScale.z);
+        }
     }
 
     public void StartGame()
     {
-        //activated when play button is hit
         
+
+
         SetPageState(PageState.Countdown);        
     }
 

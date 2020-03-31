@@ -44,7 +44,6 @@ public class CountdownText : MonoBehaviour
         theScoreManager2.scoreIncreasing = true;
         spawning2.isSpawning = true;
 
-        //SceneManager.LoadScene(Application.loadedLevelName);
-
+        
     }
 }
