@@ -16,9 +16,13 @@ public class MapGen : MonoBehaviour
     public GameObject obs2;
     public GameObject obs3;
     public GameObject obs4;
+    public GameObject obs5;
+    public GameObject obs6;
+    public GameObject obs7;
 
     public GameObject obsPrefab;
-
+    public GameObject[] spawnee;
+   
     public float minObsY;
     public float maxObsY;
 
@@ -30,17 +34,26 @@ public class MapGen : MonoBehaviour
 
     public bool isSpawning;
 
+    public int randomInt;
+
+
+    
     void Start()
     {
         obs1 = GenerateObs(player.transform.position.x + 10);
         obs2 = GenerateObs(obs1.transform.position.x);
         obs3 = GenerateObs(obs2.transform.position.x);
         obs4 = GenerateObs(obs3.transform.position.x);
+        obs5 = GenerateObs(obs4.transform.position.x);
+        obs6 = GenerateObs(obs5.transform.position.x);
+        obs7 = GenerateObs(obs6.transform.position.x);
     }
 
     GameObject GenerateObs(float referenceX)
     {
-        GameObject obs = GameObject.Instantiate(obsPrefab);
+        randomInt = Random.Range(0, spawnee.Length);
+        
+        GameObject obs = GameObject.Instantiate(spawnee[randomInt]);
         SetTransform(obs, referenceX);
         return obs;
     }
@@ -52,14 +65,14 @@ public class MapGen : MonoBehaviour
         obs.transform.position = new Vector3(referenceX + Random.Range(minObsSpacing, maxObsSpacing), Random.Range(minObsY, maxObsY), 0);
 
         //stretch on y
-        obs.transform.localScale = new Vector3(obs.transform.localScale.x, Random.Range(minObsScaleY, maxObsY), obs.transform.localScale.z);
+        //obs.transform.localRotation = new Vector3(obs.transform.localRotation.x, obs.transform.localRotation.y, obs.transform.localRotation.z);
     }
 
 
 
 
 
-    // Update is called once per frame
+   
     void Update()
     {
         if (player.transform.position.x > floor.transform.position.x)
@@ -85,9 +98,12 @@ public class MapGen : MonoBehaviour
                 obs1 = obs2;
                 obs2 = obs3;
                 obs3 = obs4;
+                obs4 = obs5;
+                obs5 = obs6;
+                obs6 = obs7;
 
-                SetTransform(tempObs, obs3.transform.position.x);
-                obs4 = tempObs;
+                SetTransform(tempObs, obs6.transform.position.x);
+                obs7 = tempObs;
             }
         }
 

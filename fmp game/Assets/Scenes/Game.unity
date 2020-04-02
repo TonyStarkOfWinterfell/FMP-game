@@ -185,7 +185,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1126524184}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -739,8 +739,9 @@ MonoBehaviour:
   character: {fileID: 722203879}
   fish: {fileID: 21300000, guid: 9843748c2547a1f449a4fc1c3b1e7e7c, type: 3}
   jellyFish: {fileID: 21300000, guid: ef9cec2637bec164cbf1f7826920b0d4, type: 3}
-  turtle: {fileID: 21300000, guid: a9198025c6ce74044882763452b4f018, type: 3}
-  penguin: {fileID: 21300000, guid: 0f04e7699d837ab498692bc9bcca1404, type: 3}
+  turtle: {fileID: 21300000, guid: 446c773efb142c74eb39433342995ab9, type: 3}
+  penguin: {fileID: 21300000, guid: 3d8c8988aff744843ba4c211ea715681, type: 3}
+  choose2: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -795,6 +796,7 @@ Transform:
   m_LocalPosition: {x: 3.7828026, y: -3.8168728, z: -67.245514}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 2015587978}
   - {fileID: 865327228}
   - {fileID: 1552211386}
   - {fileID: 1858186551}
@@ -833,7 +835,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 1126524184}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.8092484, y: 0.07333334}
   m_AnchorMax: {x: 0.9254786, y: 0.22166668}
@@ -916,7 +918,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 518083361b9b6384ca71df3e14013506, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 157e868a46511b1409d947962d146209, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1098,7 +1100,7 @@ RectTransform:
   m_Children:
   - {fileID: 403773593}
   m_Father: {fileID: 1126524184}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1211,7 +1213,7 @@ GameObject:
   - component: {fileID: 644541146}
   - component: {fileID: 644541145}
   m_Layer: 0
-  m_Name: ScoreText
+  m_Name: ScoreMenuText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1602,7 +1604,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 9843748c2547a1f449a4fc1c3b1e7e7c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1610,7 +1612,7 @@ SpriteRenderer:
   m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &722203881
@@ -1628,7 +1630,7 @@ Transform:
   - {fileID: 1404418913}
   - {fileID: 1866376368}
   m_Father: {fileID: 519420032}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &722203882
 Rigidbody2D:
@@ -2055,15 +2057,23 @@ MonoBehaviour:
   obs2: {fileID: 0}
   obs3: {fileID: 0}
   obs4: {fileID: 0}
+  obs5: {fileID: 0}
+  obs6: {fileID: 0}
+  obs7: {fileID: 0}
   obsPrefab: {fileID: 3016039406303468710, guid: 5457a8fd773f5d0419cf30578616e1c3,
     type: 3}
+  spawnee:
+  - {fileID: 6166690674662676187, guid: 887926da0d2c0aa49b354ab467e6c618, type: 3}
+  - {fileID: 9149721629504721290, guid: 76f8f968d9cde8446852a4a6e7113189, type: 3}
+  - {fileID: 3875223739265945499, guid: f00c99c82789c5041b501e7026f75435, type: 3}
   minObsY: -4
   maxObsY: 4
-  minObsSpacing: 5
+  minObsSpacing: 4
   maxObsSpacing: 10
   minObsScaleY: 2
   maxObsScaleY: 7
   isSpawning: 1
+  randomInt: 0
 --- !u!4 &829600018
 Transform:
   m_ObjectHideFlags: 0
@@ -2111,7 +2121,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 519420032}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &865327229
 AudioSource:
@@ -2489,7 +2499,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 69440603}
-  - {fileID: 2015587978}
   - {fileID: 2046508437}
   - {fileID: 541299632}
   - {fileID: 279291350}
@@ -2849,6 +2858,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 713877884}
   highScoreText: {fileID: 1011572966}
+  scoreMenuText: {fileID: 644541145}
   scoreCount: 0
   highScoreCount: 0
   pointsPerSecond: 0.75
@@ -2882,7 +2892,7 @@ Transform:
   m_LocalScale: {x: 1.32, y: 0.37146002, z: 0.37146002}
   m_Children: []
   m_Father: {fileID: 519420032}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1552211387
 SpriteRenderer:
@@ -3291,7 +3301,7 @@ Transform:
   m_LocalScale: {x: -1.52, y: 0.685676, z: 0.6827226}
   m_Children: []
   m_Father: {fileID: 519420032}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1858186552
 SpriteRenderer:
@@ -3514,13 +3524,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2015587976}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 60, y: 60, z: 60}
+  m_LocalPosition: {x: -0.016666412, y: 0, z: 100}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1733939656}
   - {fileID: 1333349165}
-  m_Father: {fileID: 1126524184}
-  m_RootOrder: 1
+  m_Father: {fileID: 519420032}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2046508436
 GameObject:
@@ -3551,7 +3561,7 @@ Transform:
   m_LocalScale: {x: 53.399994, y: 44.79999, z: 0}
   m_Children: []
   m_Father: {fileID: 1126524184}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2046508438
 SpriteRenderer:
@@ -3633,7 +3643,7 @@ RectTransform:
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1126524184}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

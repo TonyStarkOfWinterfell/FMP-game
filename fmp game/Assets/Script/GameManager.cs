@@ -23,11 +23,11 @@ public class GameManager : MonoBehaviour
     public GameObject character;
     public Sprite fish, jellyFish, turtle, penguin;
     private SpriteRenderer mySprite;
-    private int choose2 = 1;
+    public int choose2 = 0;
 
 
     private ScoreCount theScoreManager3;
-    private CharacterSwap CharSwap;
+    private CharacterSwap CharactersSwap;
 
 
 
@@ -35,8 +35,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        theScoreManager3 = FindObjectOfType<ScoreCount>();
-        CharSwap = FindObjectOfType<CharacterSwap>();
+        theScoreManager3 = FindObjectOfType<ScoreCount>();      
     }
 
 
@@ -61,7 +60,7 @@ public class GameManager : MonoBehaviour
     {
        Instance = this;
         mySprite = character.GetComponent<SpriteRenderer>();
-        CharSwap = FindObjectOfType<CharacterSwap>();
+        CharactersSwap = FindObjectOfType<CharacterSwap>();
     }
 
 
@@ -105,10 +104,10 @@ public class GameManager : MonoBehaviour
 
     void OnPlayerDied()
     {
-        total.transform.position = new Vector3((total.transform.position.x + 50), total.transform.position.y, total.transform.position.z);
-        theScoreManager3.scoreCount = 0;
+        total.transform.position = new Vector3((total.transform.position.x + 500), total.transform.position.y, total.transform.position.z);
+        
 
-        gameOver = true;
+        gameOver = true;        
         int savedScore = PlayerPrefs.GetInt("Highscore");
         if (score > savedScore)
         {
@@ -164,8 +163,14 @@ public class GameManager : MonoBehaviour
         scoreText.text = "0";
         SetPageState(PageState.Start);
 
-        choose2 = CharSwap.SelectInt;
+       
+    }
 
+    public void StartGame()
+    {
+        theScoreManager3.scoreCount = 0;
+        choose2 = CharactersSwap.SelectInt;
+        
         switch (choose2)
         {
             case 1:
@@ -185,12 +190,6 @@ public class GameManager : MonoBehaviour
                 break;
 
         }
-    }
-
-    public void StartGame()
-    {
-        
-
 
         SetPageState(PageState.Countdown);        
     }

@@ -31,9 +31,6 @@ public class PlayerTap : MonoBehaviour
 
     
 
-
-
-
     void Start()
     {
         theScoreManager = FindObjectOfType<ScoreCount>();
@@ -50,14 +47,12 @@ public class PlayerTap : MonoBehaviour
     {
         GameManager.OnGameStarted += OnGameStarted;
         GameManager.OnGameOverConfirmed += OnGameOverConfirmed;
-
     }
 
     void OnDisable()
     {
         GameManager.OnGameStarted -= OnGameStarted;
         GameManager.OnGameOverConfirmed -= OnGameOverConfirmed;
-
     }
 
 
@@ -72,8 +67,7 @@ public class PlayerTap : MonoBehaviour
     {
         
     } 
-
-
+       
 
 
     void Update()
@@ -90,6 +84,9 @@ public class PlayerTap : MonoBehaviour
 
         transform.rotation = Quaternion.Lerp(transform.rotation, downRotation, tiltSmooth * Time.deltaTime);
     }
+
+
+
 
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -115,15 +112,20 @@ public class PlayerTap : MonoBehaviour
             transform.localPosition = startPos;
             transform.rotation = Quaternion.identity;
 
-            spawning.obs1 = GenerateObs(spawning.player.transform.position.x + 10);
+            spawning.obs1 = GenerateObs(spawning.player.transform.position.x + 14);
             spawning.obs2 = GenerateObs(spawning.obs1.transform.position.x);
             spawning.obs3 = GenerateObs(spawning.obs2.transform.position.x);
             spawning.obs4 = GenerateObs(spawning.obs3.transform.position.x);
+            spawning.obs5 = GenerateObs(spawning.obs4.transform.position.x);
+            spawning.obs6 = GenerateObs(spawning.obs5.transform.position.x);
+            spawning.obs7 = GenerateObs(spawning.obs6.transform.position.x);
         }
 
         GameObject GenerateObs(float referenceX)
         {
-            GameObject obs = GameObject.Instantiate(spawning.obsPrefab);
+            spawning.randomInt = Random.Range(0, spawning.spawnee.Length);
+
+            GameObject obs = GameObject.Instantiate(spawning.spawnee[spawning.randomInt]);
             SetTransform(obs, referenceX);
             return obs;
         }
@@ -133,7 +135,7 @@ public class PlayerTap : MonoBehaviour
             obs.transform.position = new Vector3(referenceX + Random.Range(spawning.minObsSpacing, spawning.maxObsSpacing), Random.Range(spawning.minObsY, spawning.maxObsY), 0);
 
             //stretch on y
-            obs.transform.localScale = new Vector3(obs.transform.localScale.x, Random.Range(spawning.minObsScaleY, spawning.maxObsY), obs.transform.localScale.z);
+            //obs.transform.localScale = new Vector3(obs.transform.localScale.x, Random.Range(spawning.minObsScaleY, spawning.maxObsY), obs.transform.localScale.z);
         }
     }
     

@@ -19,7 +19,7 @@ public class CharacterSwap : MonoBehaviour
 
     private void Awake()
     {
-        
+        SelectInt = 1;
         fishRender = fish.GetComponent<SpriteRenderer>();
         jellyFishRender = fish.GetComponent<SpriteRenderer>();
         turtleRender = fish.GetComponent<SpriteRenderer>();
@@ -113,8 +113,8 @@ public class CharacterSwap : MonoBehaviour
 
 
     public void SetInt()
-    {
-        SelectInt = CharacterInt;
+    {        
+        SelectInt = CharacterInt;        
     }
 
 

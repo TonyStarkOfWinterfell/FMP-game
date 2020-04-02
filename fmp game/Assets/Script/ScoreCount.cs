@@ -7,6 +7,7 @@ public class ScoreCount : MonoBehaviour
 {
     public Text scoreText;
     public Text highScoreText;
+    public Text scoreMenuText;
     public float scoreCount;
     public float highScoreCount;
 
@@ -28,6 +29,7 @@ public class ScoreCount : MonoBehaviour
         }
 
         scoreText.text = Mathf.Round(scoreCount) + " meters";
+        scoreMenuText.text = "score: " + Mathf.Round(scoreCount) + " meters";
         highScoreText.text = "Highscore: " + Mathf.Round(highScoreCount) + " meters";
     }
 }
