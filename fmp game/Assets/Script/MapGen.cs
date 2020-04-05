@@ -29,8 +29,8 @@ public class MapGen : MonoBehaviour
     public float minObsSpacing;
     public float maxObsSpacing;
 
-    public float minObsScaleY;
-    public float maxObsScaleY;
+    public float minObsZRotate;
+    public float maxObsZRotate;
 
     public bool isSpawning;
 
@@ -63,9 +63,8 @@ public class MapGen : MonoBehaviour
     void SetTransform(GameObject obs, float referenceX)
     {
         obs.transform.position = new Vector3(referenceX + Random.Range(minObsSpacing, maxObsSpacing), Random.Range(minObsY, maxObsY), 0);
-
-        //stretch on y
-        //obs.transform.localRotation = new Vector3(obs.transform.localRotation.x, obs.transform.localRotation.y, obs.transform.localRotation.z);
+                
+        obs.transform.localRotation = Quaternion.Euler(0, 0, Random.Range(minObsZRotate, maxObsZRotate));
     }
 
 

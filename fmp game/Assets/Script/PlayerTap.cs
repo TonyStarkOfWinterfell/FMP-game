@@ -134,8 +134,7 @@ public class PlayerTap : MonoBehaviour
         {
             obs.transform.position = new Vector3(referenceX + Random.Range(spawning.minObsSpacing, spawning.maxObsSpacing), Random.Range(spawning.minObsY, spawning.maxObsY), 0);
 
-            //stretch on y
-            //obs.transform.localScale = new Vector3(obs.transform.localScale.x, Random.Range(spawning.minObsScaleY, spawning.maxObsY), obs.transform.localScale.z);
+            obs.transform.localRotation = Quaternion.Euler(0, 0, Random.Range(spawning.minObsZRotate, spawning.maxObsZRotate));
         }
     }
     
