@@ -25,6 +25,9 @@ public class PlayerTap : MonoBehaviour
 
     GameManager game;
 
+    public Text scoredPoints;
+    public int ScoreP;
+
     private ScoreCount theScoreManager;
     private MapGen spawning;
 
@@ -83,6 +86,8 @@ public class PlayerTap : MonoBehaviour
         }
 
         transform.rotation = Quaternion.Lerp(transform.rotation, downRotation, tiltSmooth * Time.deltaTime);
+
+        scoredPoints.text = "" + Mathf.Round(ScoreP);
     }
 
 
@@ -92,10 +97,12 @@ public class PlayerTap : MonoBehaviour
     {
         if (col.gameObject.tag == "ScoreZone")
         {
-            //register score
-            OnPlayerScored();
-            //play 
+            spawning.Score.transform.position = new Vector3(Random.Range(spawning.player.transform.position.x + 10, spawning.player.transform.position.x + 50), Random.Range(spawning.minObsY, spawning.maxObsY), spawning.Score.transform.position.z);
+            OnPlayerScored();            
             scoreAudio.Play();
+
+            ScoreP += Random.Range(-1, 5);
+            //scoredPoints.text = "" + Mathf.Round(Random.Range(-1, 5));
         }
 
         if (col.gameObject.tag == "DeadZone")
@@ -111,6 +118,8 @@ public class PlayerTap : MonoBehaviour
 
             transform.localPosition = startPos;
             transform.rotation = Quaternion.identity;
+
+            spawning.Score.transform.position = new Vector3(Random.Range(spawning.player.transform.position.x + 10, spawning.player.transform.position.x + 50), Random.Range(spawning.minObsY, spawning.maxObsY), spawning.Score.transform.position.z);
 
             spawning.obs1 = GenerateObs(spawning.player.transform.position.x + 14);
             spawning.obs2 = GenerateObs(spawning.obs1.transform.position.x);

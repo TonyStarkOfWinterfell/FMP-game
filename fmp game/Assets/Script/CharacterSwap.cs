@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterSwap : MonoBehaviour
 {
@@ -15,7 +16,22 @@ public class CharacterSwap : MonoBehaviour
     public int CharacterInt = 1;
     private SpriteRenderer fishRender, jellyFishRender, turtleRender, penguinRender;
 
+    private bool fishBool;
+    private bool jellyBool;
+    private bool turtBool;
+    private bool pengBool;
+    private bool currentBool;
+
+    public Text selectButton;
+
     public int SelectInt = 1;
+
+    public AudioSource purchase;
+    public AudioSource error;
+
+    public PlayerTap PT;
+
+
 
     private void Awake()
     {
@@ -24,6 +40,13 @@ public class CharacterSwap : MonoBehaviour
         jellyFishRender = fish.GetComponent<SpriteRenderer>();
         turtleRender = fish.GetComponent<SpriteRenderer>();
         penguinRender = fish.GetComponent<SpriteRenderer>();
+
+        fishBool = true;
+        jellyBool = false;
+        turtBool = false;
+        pengBool = false;
+
+        PT = FindObjectOfType<PlayerTap>();
     }
 
     public void Update()
@@ -41,28 +64,69 @@ public class CharacterSwap : MonoBehaviour
                 fish.transform.position = OffScreen;
                 jellyFish.transform.position = Displayed;
                 jellyFishRender.enabled = true;
+
                 CharacterInt++;
+                currentBool = jellyBool;
+                if (jellyBool == false)
+                {
+                    selectButton.text = "Buy (3)";
+                }
+                else
+                {
+                    selectButton.text = "Select";
+                }
                 break;
             case 2:
                 jellyFishRender.enabled = false;
                 jellyFish.transform.position = OffScreen;
                 turtle.transform.position = Displayed;
                 turtleRender.enabled = true;
+
                 CharacterInt++;
+                currentBool = turtBool;
+                if (turtBool == false)
+                {
+                    selectButton.text = "Buy (3)";
+                }
+                else
+                {
+                    selectButton.text = "Select";
+                }
                 break;
             case 3:
                 turtleRender.enabled = false;
                 turtle.transform.position = OffScreen;
                 penguin.transform.position = Displayed;
                 penguinRender.enabled = true;
-                CharacterInt++;
+
+                CharacterInt ++;
+                currentBool = pengBool;
+                if (pengBool == false)
+                {
+                    selectButton.text = "Buy (3)";
+                }
+                else
+                {
+                    selectButton.text = "Select";
+                }
                 break;
             case 4:
                 penguinRender.enabled = false;
                 penguin.transform.position = OffScreen;
                 fish.transform.position = Displayed;
                 fishRender.enabled = true;
-                CharacterInt++;
+
+                CharacterInt ++;
+                currentBool = fishBool;
+                if (fishBool == false)
+                {
+                    selectButton.text = "Buy (3)";
+                }
+                else
+                {
+                    selectButton.text = "Select";
+                }
+
                 ResetInt();
                 break;
             default:
@@ -70,6 +134,10 @@ public class CharacterSwap : MonoBehaviour
                 break;
         }
     }
+
+
+    
+
 
     public void PreviousCharacter()
     {
@@ -79,8 +147,19 @@ public class CharacterSwap : MonoBehaviour
                 fishRender.enabled = false;
                 fish.transform.position = OffScreen;
                 penguin.transform.position = Displayed;
-                penguinRender.enabled = true;
+                penguinRender.enabled = true;      
+                
                 CharacterInt--;
+                currentBool = pengBool;
+                if(pengBool == false)
+                {
+                    selectButton.text = "Buy (3)";
+                }
+                else
+                {
+                    selectButton.text = "Select";
+                }
+
                 ResetInt();
                 break;
             case 2:
@@ -88,21 +167,53 @@ public class CharacterSwap : MonoBehaviour
                 jellyFish.transform.position = OffScreen;
                 fish.transform.position = Displayed;
                 fishRender.enabled = true;
+
                 CharacterInt--;
+                currentBool = fishBool;
+                if (fishBool == false)
+                {
+                    selectButton.text = "Buy (3)";
+                }
+                else
+                {
+                    selectButton.text = "Select";
+                }
                 break;
             case 3:
                 turtleRender.enabled = false;
                 turtle.transform.position = OffScreen;
                 jellyFish.transform.position = Displayed;
                 jellyFishRender.enabled = true;
+
                 CharacterInt--;
+                currentBool = jellyBool;
+                if (jellyBool == false)
+                {
+                    selectButton.text = "Buy (3)";
+                }
+                else
+                {
+                    selectButton.text = "Select";
+                }
+
                 break;
             case 4:
                 penguinRender.enabled = false;
                 penguin.transform.position = OffScreen;
                 turtle.transform.position = Displayed;
                 turtleRender.enabled = true;
+
                 CharacterInt--;
+                currentBool = turtBool;
+                if (turtBool == false)
+                {
+                    selectButton.text = "Buy (3)";
+                }
+                else
+                {
+                    selectButton.text = "Select";
+                }
+
                 break;
             default:
                 ResetInt();
@@ -112,9 +223,35 @@ public class CharacterSwap : MonoBehaviour
 
 
 
+
+
+
+
+
     public void SetInt()
     {        
-        SelectInt = CharacterInt;        
+        if(currentBool == false)
+        {
+            if(PT.ScoreP >= 3)
+            {
+                PT.ScoreP = PT.ScoreP - 3;
+                PT.scoredPoints.text = "" + Mathf.Round(PT.ScoreP);
+                purchase.Play();
+                selectButton.text = "Select";
+                SelectInt = CharacterInt;
+                currentBool = true;
+
+            }
+            else
+            {
+                error.Play();
+            }
+        }
+        else
+        {
+            SelectInt = CharacterInt;
+        }
+             
     }
 
 

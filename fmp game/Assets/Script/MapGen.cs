@@ -11,6 +11,7 @@ public class MapGen : MonoBehaviour
     public GameObject roof;
 
     public GameObject player;
+    public GameObject Score;
 
     public GameObject obs1;
     public GameObject obs2;
@@ -31,7 +32,7 @@ public class MapGen : MonoBehaviour
 
     public float minObsZRotate;
     public float maxObsZRotate;
-
+       
     public bool isSpawning;
 
     public int randomInt;
@@ -40,6 +41,7 @@ public class MapGen : MonoBehaviour
     
     void Start()
     {
+        Score.transform.position = new Vector3(Random.Range(player.transform.position.x + 10, player.transform.position.x + 50), Random.Range(minObsY, maxObsY), Score.transform.position.z); 
         obs1 = GenerateObs(player.transform.position.x + 10);
         obs2 = GenerateObs(obs1.transform.position.x);
         obs3 = GenerateObs(obs2.transform.position.x);
