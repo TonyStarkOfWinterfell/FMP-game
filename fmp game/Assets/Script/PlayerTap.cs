@@ -30,6 +30,7 @@ public class PlayerTap : MonoBehaviour
 
     private ScoreCount theScoreManager;
     private MapGen spawning;
+    private inputWindow inWind;
 
 
     
@@ -38,10 +39,13 @@ public class PlayerTap : MonoBehaviour
     {
         theScoreManager = FindObjectOfType<ScoreCount>();
         spawning = FindObjectOfType<MapGen>();
-        rigidbody = GetComponent<Rigidbody2D>();
+        inWind = FindObjectOfType<inputWindow>();
+        rigidbody = GetComponent<Rigidbody2D>();        
         downRotation = Quaternion.Euler(0, 0, -90);
         forwardRotation = Quaternion.Euler(0, 0, 35);
         game = GameManager.Instance;
+
+        inWind.input.transform.position = new Vector3(inWind.input.transform.position.x, inWind.input.transform.position.y + 50, 0);
     }
 
 
@@ -77,7 +81,7 @@ public class PlayerTap : MonoBehaviour
     {
         if (game.GameOver) return;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
         {
             tapAudio.Play();
             transform.rotation = forwardRotation;
@@ -115,6 +119,8 @@ public class PlayerTap : MonoBehaviour
 
             spawning.isSpawning = false;
             theScoreManager.scoreIncreasing = false;
+
+            inWind.input.transform.position = new Vector3(inWind.input.transform.position.x, inWind.input.transform.position.y - 50, 0);
 
             transform.localPosition = startPos;
             transform.rotation = Quaternion.identity;

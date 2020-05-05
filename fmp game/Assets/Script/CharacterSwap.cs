@@ -21,6 +21,7 @@ public class CharacterSwap : MonoBehaviour
     private bool turtBool;
     private bool pengBool;
     private bool currentBool;
+    private string currentString;
 
     public Text selectButton;
 
@@ -67,6 +68,7 @@ public class CharacterSwap : MonoBehaviour
 
                 CharacterInt++;
                 currentBool = jellyBool;
+                currentString = "jelly";
                 if (jellyBool == false)
                 {
                     selectButton.text = "Buy (3)";
@@ -84,6 +86,8 @@ public class CharacterSwap : MonoBehaviour
 
                 CharacterInt++;
                 currentBool = turtBool;
+                currentString = "turtle";
+
                 if (turtBool == false)
                 {
                     selectButton.text = "Buy (3)";
@@ -101,6 +105,7 @@ public class CharacterSwap : MonoBehaviour
 
                 CharacterInt ++;
                 currentBool = pengBool;
+                currentString = "penguin";
                 if (pengBool == false)
                 {
                     selectButton.text = "Buy (3)";
@@ -118,6 +123,7 @@ public class CharacterSwap : MonoBehaviour
 
                 CharacterInt ++;
                 currentBool = fishBool;
+                currentString = "fish";
                 if (fishBool == false)
                 {
                     selectButton.text = "Buy (3)";
@@ -151,7 +157,8 @@ public class CharacterSwap : MonoBehaviour
                 
                 CharacterInt--;
                 currentBool = pengBool;
-                if(pengBool == false)
+                currentString = "penguin";
+                if (pengBool == false)
                 {
                     selectButton.text = "Buy (3)";
                 }
@@ -170,6 +177,7 @@ public class CharacterSwap : MonoBehaviour
 
                 CharacterInt--;
                 currentBool = fishBool;
+                currentString = "fish";
                 if (fishBool == false)
                 {
                     selectButton.text = "Buy (3)";
@@ -187,6 +195,7 @@ public class CharacterSwap : MonoBehaviour
 
                 CharacterInt--;
                 currentBool = jellyBool;
+                currentString = "jelly";
                 if (jellyBool == false)
                 {
                     selectButton.text = "Buy (3)";
@@ -205,6 +214,7 @@ public class CharacterSwap : MonoBehaviour
 
                 CharacterInt--;
                 currentBool = turtBool;
+                currentString = "turtle";
                 if (turtBool == false)
                 {
                     selectButton.text = "Buy (3)";
@@ -240,13 +250,39 @@ public class CharacterSwap : MonoBehaviour
                 selectButton.text = "Select";
                 SelectInt = CharacterInt;
                 currentBool = true;
+                Debug.Log("current = " + currentBool);
+                Debug.Log("jelly = " + jellyBool);
 
+                switch (currentString)
+                {
+                    case "jelly":
+                        jellyBool = true;
+                        break;
+
+                    case "turtle":
+                        turtBool = true;                        
+                        break;
+
+                    case "penguin":
+                        pengBool = true;
+                        break;
+
+                    case "fish":
+                        fishBool = true;
+                        break;
+
+                    default:
+                        fishBool = true;
+                        break;
+                }
             }
+
             else
             {
                 error.Play();
             }
         }
+
         else
         {
             SelectInt = CharacterInt;
