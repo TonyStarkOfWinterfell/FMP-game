@@ -17,7 +17,7 @@ public class ScoreDetecter : MonoBehaviour
     {
         if (col.gameObject.tag == "ScoreZone")
         {            
-            spawning4.Score.transform.position = new Vector3(Random.Range(spawning4.player.transform.position.x + 10, spawning4.player.transform.position.x + 50), Random.Range(spawning4.minObsY, spawning4.maxObsY), spawning4.Score.transform.position.z);
+            spawning4.Score.transform.position = new Vector3(Random.Range(spawning4.player.transform.position.x + 20, spawning4.player.transform.position.x + 60), Random.Range(spawning4.minObsY, spawning4.maxObsY), spawning4.Score.transform.position.z);
         }
                      
     }

@@ -32,7 +32,7 @@ public class PlayerTap : MonoBehaviour
     private MapGen spawning;
     private inputWindow inWind;
 
-
+    public int rnd;
     
 
     void Start()
@@ -46,6 +46,8 @@ public class PlayerTap : MonoBehaviour
         game = GameManager.Instance;
 
         inWind.input.transform.position = new Vector3(inWind.input.transform.position.x, inWind.input.transform.position.y + 50, 0);
+
+        rnd = Random.Range(-1, 5);
     }
 
 
@@ -104,9 +106,19 @@ public class PlayerTap : MonoBehaviour
             spawning.Score.transform.position = new Vector3(Random.Range(spawning.player.transform.position.x + 10, spawning.player.transform.position.x + 50), Random.Range(spawning.minObsY, spawning.maxObsY), spawning.Score.transform.position.z);
             OnPlayerScored();            
             scoreAudio.Play();
+            rnd = Random.Range(-1, 5);
 
-            ScoreP += Random.Range(-1, 5);
+            if (ScoreP < 1  || rnd == 0)
+            {
+                ScoreP += Random.Range(1, 5);
+            }else
+            {
+                ScoreP += rnd;
+
+            }
+
             //scoredPoints.text = "" + Mathf.Round(Random.Range(-1, 5));
+            rnd = Random.Range(-1, 5);
         }
 
         if (col.gameObject.tag == "DeadZone")

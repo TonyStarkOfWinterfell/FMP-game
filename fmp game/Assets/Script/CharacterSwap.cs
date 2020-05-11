@@ -249,9 +249,7 @@ public class CharacterSwap : MonoBehaviour
                 purchase.Play();
                 selectButton.text = "Select";
                 SelectInt = CharacterInt;
-                currentBool = true;
-                Debug.Log("current = " + currentBool);
-                Debug.Log("jelly = " + jellyBool);
+                currentBool = true;                
 
                 switch (currentString)
                 {
